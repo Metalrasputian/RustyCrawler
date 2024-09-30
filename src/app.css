@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components{
+    .form-cell-header {
+        @apply bg-surface-300 form-cell;
+    }
+
+    .form-cell {
+        @apply border-token;
+    }
+}
