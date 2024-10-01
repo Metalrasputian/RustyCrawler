@@ -1,11 +1,15 @@
-<script>
+<script lang="ts">
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 	  import MechList from '$lib/MechList.svelte';
     import PilotList from '$lib/PilotList.svelte';
+    import { Pilot, PilotRank } from '$lib/Pilot';
+    import {Mech} from '$lib/Mech';
     import Sortie from '$lib/Sortie.svelte';
 	  import { arcologies } from '$lib/Arcology';
     let crawlerTab = 0;
     let current_arcology_index = 0;
+    let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
+    let mechs : Mech[]= [{name: "Mech 1", value:"I'm the first mech."}, {name: "Mech 2", value: "I'm a second mech!"}];
 </script>
   
 <div class="container mx-auto p-8 space-y-8">
@@ -27,9 +31,9 @@
       
     <svelte:fragment slot="panel">
       {#if crawlerTab == 0}
-        <MechList />
+        <MechList bind:mechs={mechs}/>
       {:else if crawlerTab == 1}
-        <PilotList current_arcology={arcologies[current_arcology_index]}/>
+        <PilotList bind:pilots={pilots} current_arcology={arcologies[current_arcology_index]}/>
       {:else }
         <Sortie />
       {/if}

@@ -3,14 +3,22 @@
 	import PilotView from "./PilotView.svelte";
 	import {Pilot, PilotRank} from "$lib/Pilot";
 
-    let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
+    
     let currentPilotIndex = 0;
     export let current_arcology;
+    export let pilots: Pilot[];
+
+    function deletePilot() {
+        let removeIndex = currentPilotIndex;
+        currentPilotIndex = 0;
+        pilots = pilots.splice(removeIndex,1);
+    }
 </script>
 <div>
     <button class="btn btn-primary" on:click={() => {pilots = [...pilots, new Pilot()]}}>Add Pilot</button>
-    <button class="btn btn-primary" on:click={()=>{}}>Remove Pilot</button></div>
-<div class="card grid grid-cols-[auto_1fr] gap-4">    
+    <button class="btn btn-primary" on:click={deletePilot}>Remove Pilot</button>
+</div>
+<div class="card grid grid-cols-[auto_1fr] gap-4">
     <div>
         <AppRail>
             {#each pilots as pilot, i}
@@ -22,7 +30,7 @@
         </AppRail>
     </div>
     <div class="container">
-        <PilotView pilot={pilots[currentPilotIndex]} current_arcology={current_arcology}/>
+        <PilotView bind:pilot={pilots[currentPilotIndex]} current_arcology={current_arcology}/>
     </div>
     
 </div>
