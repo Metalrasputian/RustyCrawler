@@ -17,7 +17,7 @@ export class Pilot {
     advancePips = 0;
     advances: Advance[] = [];
 
-    constructor(rank: PilotRank, name: string){
+    constructor(rank: PilotRank = PilotRank.Rookie, name: string = ""){
         this.experienceLevel = rank;
         this.name = name;
     }

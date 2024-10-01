@@ -7,17 +7,22 @@
     let currentPilotIndex = 0;
     export let current_arcology;
 </script>
-
-<div class="card grid grid-cols-[auto_1fr] gap-4">
-    <AppRail>
-        {#each pilots as pilot, i}
-        <AppRailTile bind:group={currentPilotIndex} name={pilot.name} value={i} title={pilot.name}>
-            <svelte:fragment slot="lead">Icon goes here</svelte:fragment>
-            <span>{pilot.name}</span>
-        </AppRailTile>
-        {/each}
-    </AppRail>
+<div>
+    <button class="btn btn-primary" on:click={() => {pilots = [...pilots, new Pilot()]}}>Add Pilot</button>
+    <button class="btn btn-primary" on:click={()=>{}}>Remove Pilot</button></div>
+<div class="card grid grid-cols-[auto_1fr] gap-4">    
+    <div>
+        <AppRail>
+            {#each pilots as pilot, i}
+            <AppRailTile bind:group={currentPilotIndex} name={pilot.name} value={i} title={pilot.name}>
+                <svelte:fragment slot="lead">Icon goes here</svelte:fragment>
+                <span>{pilot.name}</span>
+            </AppRailTile>
+            {/each}
+        </AppRail>
+    </div>
     <div class="container">
         <PilotView pilot={pilots[currentPilotIndex]} current_arcology={current_arcology}/>
     </div>
+    
 </div>
