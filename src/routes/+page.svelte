@@ -9,7 +9,7 @@
     let crawlerTab = 0;
     let current_arcology_index = 0;
     let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
-    let mechs : Mech[]= [{name: "Mech 1", value:"I'm the first mech."}, {name: "Mech 2", value: "I'm a second mech!"}];
+    let mechs : Mech[]= [new Mech("Bangers"), new Mech("Mash")];
 </script>
   
 <div class="container mx-auto p-8 space-y-8">
