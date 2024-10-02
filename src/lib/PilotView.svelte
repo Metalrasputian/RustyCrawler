@@ -5,7 +5,7 @@
     export let current_arcology:Arcology;
 </script>
 
-<div class="grid grid-cols-6 ">
+<div class="grid grid-cols-6">
     <div class="form-cell-header"><p>Pilot Name:</p></div>
     <div class="form-cell col-span-5"><p>{pilot.name}</p></div>
     <div class="form-cell-header"><p>Arcology: </p></div>

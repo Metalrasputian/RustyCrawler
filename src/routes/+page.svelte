@@ -3,13 +3,13 @@
 	  import MechList from '$lib/MechList.svelte';
     import PilotList from '$lib/PilotList.svelte';
     import { Pilot, PilotRank } from '$lib/Pilot';
-    import {Mech} from '$lib/Mech';
+    import {FrameSize, Mech} from '$lib/Mech';
     import Sortie from '$lib/Sortie.svelte';
 	  import { arcologies } from '$lib/Arcology';
     let crawlerTab = 0;
     let current_arcology_index = 0;
     let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
-    let mechs : Mech[]= [new Mech("Bangers"), new Mech("Mash")];
+    let mechs : Mech[]= [new Mech("Bangers"), new Mech("Mash", FrameSize.Medium), new Mech("Beefsteak", FrameSize.Heavy)];
 </script>
   
 <div class="container mx-auto p-8 space-y-8">

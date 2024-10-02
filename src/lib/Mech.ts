@@ -78,6 +78,14 @@ export class Mech {
     getPropDesc():any {
         return Mech.propulsionDescriptions.get(this.propulsion);
     }
+
+    getWeight() {
+
+    }
+
+    getMatCost(){
+        
+    }
 }
 
 Mech.populatePropDesc();
