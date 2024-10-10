@@ -1,11 +1,11 @@
 <script lang="ts">
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
-	  import MechList from '$lib/MechList.svelte';
-    import PilotList from '$lib/PilotList.svelte';
-    import { Pilot, PilotRank } from '$lib/Pilot';
-    import {FrameSize, Mech} from '$lib/Mech';
-    import Sortie from '$lib/Sortie.svelte';
-	  import { arcologies } from '$lib/Arcology';
+	  import MechList from '$lib/UI/MechList.svelte';
+    import PilotList from '$lib/UI/PilotList.svelte';
+    import { Pilot, PilotRank } from '$lib/Data/Pilot';
+    import {FrameSize, Mech} from '$lib/Data/Mech';
+    import Sortie from '$lib/UI/Sortie.svelte';
+	  import { arcologies } from '$lib/Data/Arcology';
     let crawlerTab = 0;
     let current_arcology_index = 0;
     let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];

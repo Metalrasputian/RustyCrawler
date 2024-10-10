@@ -1,4 +1,4 @@
-import { PilotRank } from "./Pilot";
+import { PilotRank } from "$lib/Data/Pilot";
 
 export class Arcology {
     name: string;

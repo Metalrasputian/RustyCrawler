@@ -1,6 +1,7 @@
 <script lang="ts">
-    import {Pilot} from "$lib/Pilot";
-	import type { Arcology } from "./Arcology";
+    import {Pilot} from "$lib/Data/Pilot";
+	import type { Arcology } from "$lib/Data/Arcology";
+	import BoxTracker from "./Components/boxTracker.svelte";
     export let pilot:Pilot;
     export let current_arcology:Arcology;
 </script>
@@ -44,12 +45,13 @@
     </div>
     <div class="form-cell col-span-6">
         <div>Advances: 
-            {#each [1,2,3] as i}
+            <!--{#each [1,2,3] as i}
                 <input type="checkbox" name="advancePips" value={i} checked={pilot.advancePips >= i}>
                 {#if i < 3}
                     *
                 {/if}
-            {/each}
+            /each-->
+            <BoxTracker totalPips={3} filledPips={2} boxName="advancePips" />
         </div>
         {#each pilot.advances as advance}
             <div><p>{advance.name}</p><p>{advance.description}</p></div>

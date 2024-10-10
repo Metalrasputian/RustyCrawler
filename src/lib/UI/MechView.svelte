@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {FrameSize, Mech, PropulsionType} from '$lib/Mech';
-	import Weapon from './Weapon.svelte';
+    import {FrameSize, Mech, PropulsionType} from '$lib/Data/Mech';
+	import Weapon from '$lib/UI/Weapon.svelte';
     export let current_mech:Mech;
 </script>
 
