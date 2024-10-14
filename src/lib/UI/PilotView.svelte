@@ -4,6 +4,8 @@
 	import BoxTracker from "./Components/boxTracker.svelte";
     export let pilot:Pilot;
     export let current_arcology:Arcology;
+
+    let pipCount = 2;
 </script>
 
 <div class="grid grid-cols-6">
@@ -51,7 +53,7 @@
                     *
                 {/if}
             /each-->
-            <BoxTracker totalPips={3} filledPips={2} boxName="advancePips" />
+            <BoxTracker totalPips={3} filledPips={pipCount} boxName="advancePips" />
         </div>
         {#each pilot.advances as advance}
             <div><p>{advance.name}</p><p>{advance.description}</p></div>
