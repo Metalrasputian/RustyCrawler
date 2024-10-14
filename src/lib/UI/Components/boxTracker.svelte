@@ -16,12 +16,12 @@
     }
 </script>
 
-<div class="grid grid-cols-3">
-    <div><button class="btn btn-primary" on:click={subPip}>-</button></div>
-    <div >
+<div class="">
+    <button class="btn btn-primary" on:click={subPip}>-</button>
+    <span>
         {#each {length: totalPips} as _, pip}
-            <input class="non-interact" type="checkbox" name="{boxName}" value={pip} checked={pip < filledPips} />
+            <input type="checkbox" name="{boxName}" value={pip} checked={pip < filledPips} />
         {/each}
-    </div>
-    <div><button class="btn btn-primary" on:click={addPip}>+</button></div>
+    </span>
+    <button class="btn btn-primary" on:click={addPip}>+</button>
 </div>
