@@ -10,4 +10,9 @@
     .form-cell {
         @apply border-token;
     }
+    
+}
+
+.non-interact {
+    pointer-events: none;
 }

@@ -47,13 +47,8 @@
     </div>
     <div class="form-cell col-span-6">
         <div>Advances: 
-            <!--{#each [1,2,3] as i}
-                <input type="checkbox" name="advancePips" value={i} checked={pilot.advancePips >= i}>
-                {#if i < 3}
-                    *
-                {/if}
-            /each-->
-            <BoxTracker totalPips={3} filledPips={pipCount} boxName="advancePips" />
+            
+            <BoxTracker totalPips={3} bind:filledPips={pilot.advancePips} boxName="advancePips" />
         </div>
         {#each pilot.advances as advance}
             <div><p>{advance.name}</p><p>{advance.description}</p></div>
