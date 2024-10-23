@@ -4,7 +4,7 @@
 
 @layer components{
     .form-cell-header {
-        @apply bg-surface-300 form-cell;
+        @apply variant-filled-surface form-cell;
     }
 
     .form-cell {

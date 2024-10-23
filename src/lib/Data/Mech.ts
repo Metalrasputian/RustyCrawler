@@ -4,6 +4,9 @@ export class Mech {
     hardPoints: HardPoint[];
     propulsion: PropulsionType;
     technicalLoadouts: TechnicalLoadout[];
+    sensorBasePips: number;
+    bodyBasePips: number;
+    propulsionBasePips: number;
 
     static propulsionDescriptions: Map<PropulsionType, string> = new Map<PropulsionType, string>();
 
@@ -20,6 +23,27 @@ export class Mech {
         this.hardPoints = this.getHardpoints();
         this.propulsion = propulsion;
         this.technicalLoadouts = technicalLoadouts;
+        
+        switch(frameSize){
+            case FrameSize.Light: {
+                this.bodyBasePips = 10;
+                this.sensorBasePips = 6;
+                this.propulsionBasePips = 8;
+                break;
+            }
+            case FrameSize.Medium: {
+                this.bodyBasePips = 18;
+                this.sensorBasePips = 8;
+                this.propulsionBasePips = 12;
+                break;
+            }
+            case FrameSize.Heavy: {
+                this.bodyBasePips = 28;
+                this.sensorBasePips = 12;
+                this.propulsionBasePips = 18;
+                break;
+            }
+        }
     }
 
     getSpeed() {

@@ -6,6 +6,7 @@
     import {FrameSize, Mech} from '$lib/Data/Mech';
     import Sortie from '$lib/UI/Sortie.svelte';
 	  import { arcologies } from '$lib/Data/Arcology';
+    import { LightSwitch } from '@skeletonlabs/skeleton';
     let crawlerTab = 0;
     let current_arcology_index = 0;
     let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
@@ -14,6 +15,7 @@
   
 <div class="container mx-auto p-8 space-y-8">
   <h1 class="h1">Welcome to your crawler</h1>
+  <LightSwitch />
 
   <div><p>Arcology: </p>
     <select class="select" bind:value={current_arcology_index}>

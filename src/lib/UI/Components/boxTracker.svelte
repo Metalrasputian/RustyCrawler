@@ -17,11 +17,11 @@
 </script>
 
 <div class="">
-    <button class="btn btn-primary" on:click={subPip}>-</button>
+    <button class="btn btn-sm variant-filled-surface "  on:click={subPip}>-</button>
     <span>
         {#each {length: totalPips} as _, pip}
             <input type="checkbox" name="{boxName}" value={pip} checked={pip < filledPips} />
         {/each}
     </span>
-    <button class="btn btn-primary" on:click={addPip}>+</button>
+    <button class="btn btn-sm variant-filled-primary" on:click={addPip}>+</button>
 </div>
