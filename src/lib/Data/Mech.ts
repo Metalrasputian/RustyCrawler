@@ -8,6 +8,8 @@ export class Mech {
     bodyBasePips: number;
     propulsionBasePips: number;
 
+    hardPointPips: {[Name:string]: number};
+
     static propulsionDescriptions: Map<PropulsionType, string> = new Map<PropulsionType, string>();
 
     static populatePropDesc() {
@@ -43,7 +45,14 @@ export class Mech {
                 this.propulsionBasePips = 18;
                 break;
             }
-        }
+        };
+
+        this.hardPointPips =
+        {
+            "Sensors": 0,
+            "Body": 0,
+            "Propulsion": 0
+        };
     }
 
     getSpeed() {
@@ -72,6 +81,18 @@ export class Mech {
 
     updateHarpoints(){
         this.hardPoints = this.getHardpoints();
+    }
+
+    getBodyPips():number{
+        return this.bodyBasePips
+    }
+
+    getSensorPips():number{
+        return this.sensorBasePips
+    }
+
+    getPropPips():number {
+        return this.propulsionBasePips
     }
 
     getWeightTolerance(){
@@ -103,8 +124,8 @@ export class Mech {
         return Mech.propulsionDescriptions.get(this.propulsion);
     }
 
-    getWeight() {
-
+    getWeight():number {
+        return 0
     }
 
     getMatCost(){

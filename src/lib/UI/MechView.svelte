@@ -1,6 +1,7 @@
 <script lang="ts">
     import {FrameSize, Mech, PropulsionType} from '$lib/Data/Mech';
 	import Weapon from '$lib/UI/Weapon.svelte';
+	import BoxTracker from './Components/boxTracker.svelte';
     export let current_mech:Mech;
 </script>
 
@@ -24,11 +25,11 @@
     <div class="form-cell-header">(3-5) Body</div>
     <div class="form-cell-header">(6) Propulsion</div>
     <div class="form-cell-header">Total Weight</div>
+    <div class="form-cell"><BoxTracker boxName="SensorPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Sensors"]}></BoxTracker></div>
     <div class="form-cell"></div>
-    <div class="form-cell"></div>
-    <div class="form-cell"></div>
-    <div class="form-cell"></div>
-    <div class="form-cell"></div>
+    <div class="form-cell"><BoxTracker boxName="BodyPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Body"]}></BoxTracker></div>
+    <div class="form-cell"><BoxTracker boxName="PropulsionPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Propulsion"]}></BoxTracker></div>
+    <div class="form-cell"><p>{current_mech.getWeight()}</p></div>
     <!-- Primary Left Weapon -->
     <Weapon slotName={"Primary " + (current_mech.frameSize != FrameSize.Light ? "Left ": "") + "Loadout"} weapon=0 />
     {#if current_mech.frameSize != FrameSize.Light}

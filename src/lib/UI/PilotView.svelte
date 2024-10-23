@@ -34,12 +34,7 @@
     </div>
     <div class="form-cell col-span-6">
         <div>Injuries: 
-            {#each [1,2,3] as i}
-                <input type="checkbox" name="injuryPips" value={i} checked={pilot.injuryPips >= i}>
-                {#if i < 3}
-                    *
-                {/if}
-            {/each}
+            <BoxTracker totalPips={3} bind:filledPips={pilot.injuryPips} boxName="injuryPips" />
         </div>
         {#each pilot.injuries as injury}
             <div><p>{injury.name}</p><p>{injury.description}</p></div>
