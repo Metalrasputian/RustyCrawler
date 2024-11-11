@@ -38,20 +38,10 @@
     <div class="form-cell"><BoxTracker boxName="BodyPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Body"]}></BoxTracker></div>
     <div class="form-cell"><BoxTracker boxName="PropulsionPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Propulsion"]}></BoxTracker></div>
     <div class="form-cell"><p>{current_mech.getWeight()}</p></div>
-    <!-- Primary Left Weapon -->
-    <Weapon slotName={"Primary " + (current_mech.frameSize != FrameSize.Light ? "Left ": "") + "Loadout"} weapon=0 />
-    {#if current_mech.frameSize != FrameSize.Light}
-    <!-- Primary Right Weapon -->
-    <Weapon slotName="Primary Right Loadout" weapon=0 />
-    {/if}
 
-    <!-- Secondary Left Weapon -->
-    <Weapon slotName={"Secondary " + (current_mech.frameSize != FrameSize.Light ? "Left ": "") + "Loadout"} weapon=0/>
-
-    {#if current_mech.frameSize == FrameSize.Heavy}
-    <!-- Secondary Right Weapon -->
-    <Weapon slotName="Secondary Right Loadout" weapon=0 />
-    {/if}
+    {#each Object.entries(current_mech.hardPointBasePips) as [hpName, hpValue]}
+        <Weapon slotName={hpName + " Loadout"} weapon=0 />
+    {/each}
     <div class="form-cell-header col-span-3">Technical Loadouts</div>
     <div class="form-cell-header">PropulsionType</div>
     <div class="form-cell-header">Encumberance</div>
