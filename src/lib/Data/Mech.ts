@@ -9,6 +9,7 @@ export class Mech {
     propulsionBasePips: number;
 
     hardPointPips: {[Name:string]: number};
+    hardPointBasePips: {[Name:string]: number};
 
     static propulsionDescriptions: Map<PropulsionType, string> = new Map<PropulsionType, string>();
 
@@ -25,24 +26,40 @@ export class Mech {
         this.hardPoints = this.getHardpoints();
         this.propulsion = propulsion;
         this.technicalLoadouts = technicalLoadouts;
+        this.hardPointBasePips = {};
         
         switch(frameSize){
             case FrameSize.Light: {
                 this.bodyBasePips = 10;
                 this.sensorBasePips = 6;
                 this.propulsionBasePips = 8;
+                this.hardPointBasePips= {
+                    "Primary": 6,
+                    "Secondary": 6
+                }
                 break;
             }
             case FrameSize.Medium: {
                 this.bodyBasePips = 18;
                 this.sensorBasePips = 8;
                 this.propulsionBasePips = 12;
+                this.hardPointBasePips= {
+                    "Left": 6,
+                    "Right": 6,
+                    "Secondary": 5
+                }
                 break;
             }
             case FrameSize.Heavy: {
                 this.bodyBasePips = 28;
                 this.sensorBasePips = 12;
                 this.propulsionBasePips = 18;
+                this.hardPointBasePips= {
+                    "Left": 8,
+                    "Right": 8,
+                    "Sec. Left": 6,
+                    "Sec. Right": 6
+                }
                 break;
             }
         };
@@ -52,6 +69,10 @@ export class Mech {
             "Sensors": 0,
             "Body": 0,
             "Propulsion": 0
+        };
+
+        for (var hpName in this.hardPointBasePips) {
+            this.hardPointPips[hpName] = 0;
         };
     }
 
@@ -65,21 +86,15 @@ export class Mech {
 
     getHardpoints():HardPoint[]{
         let hps:HardPoint[] = [];
-        hps = [...hps, new HardPoint("Primary Left", undefined)]
-        hps = [...hps, new HardPoint("Secondary Left", undefined)]
 
-        if (this.frameSize == FrameSize.Medium) {
-            hps = [...hps, new HardPoint("Primary Right", undefined)]
-        }
-
-        if (this.frameSize == FrameSize.Heavy) {
-            hps = [...hps, new HardPoint("Secondary Right", undefined)]
+        for (var hp in this.hardPointBasePips) {
+            hps = [...hps, new HardPoint(hp, undefined)]
         }
 
         return hps;
     }
 
-    updateHarpoints(){
+    updateHardpoints(){
         this.hardPoints = this.getHardpoints();
     }
 

@@ -26,7 +26,15 @@
     <div class="form-cell-header">(6) Propulsion</div>
     <div class="form-cell-header">Total Weight</div>
     <div class="form-cell"><BoxTracker boxName="SensorPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Sensors"]}></BoxTracker></div>
-    <div class="form-cell"></div>
+    <div class="form-cell">
+
+        {#each Object.entries(current_mech.hardPointBasePips) as [hpName, hpValue]}
+            <p>{hpName}</p>
+            <BoxTracker boxName={hpName} totalPips={hpValue} bind:filledPips={current_mech.hardPointPips[hpName]}></BoxTracker>
+        {/each}
+        
+
+    </div>
     <div class="form-cell"><BoxTracker boxName="BodyPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Body"]}></BoxTracker></div>
     <div class="form-cell"><BoxTracker boxName="PropulsionPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Propulsion"]}></BoxTracker></div>
     <div class="form-cell"><p>{current_mech.getWeight()}</p></div>
