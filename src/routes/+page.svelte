@@ -11,6 +11,9 @@
     let current_arcology_index = 0;
     let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
     let mechs : Mech[]= [new Mech("Bangers"), new Mech("Mash", FrameSize.Medium), new Mech("Beefsteak", FrameSize.Heavy)];
+
+    import { invoke } from '@tauri-apps/api/core';
+    const invoke = window.__TAURI__.core.invoke;
 </script>
   
 <div class="container mx-auto p-8 space-y-8">
