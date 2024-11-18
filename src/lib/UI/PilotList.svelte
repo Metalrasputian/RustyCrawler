@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AppRail, AppRailTile } from "@skeletonlabs/skeleton";
 	import PilotView from "$lib/UI/PilotView.svelte";
-	import {Pilot, PilotRank} from "$lib/Data/Pilot";
+	import {Pilot, PilotRank} from "$lib/Data/Pilot.svelte";
 
     
     let currentPilotIndex = 0;

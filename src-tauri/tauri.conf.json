@@ -31,7 +31,9 @@
       "providerShortName": null,
       "signingIdentity": null
     },
-    "resources": [],
+    "resources": [
+      "src/data/*"
+    ],
     "shortDescription": "",
     "linux": {
       "deb": {

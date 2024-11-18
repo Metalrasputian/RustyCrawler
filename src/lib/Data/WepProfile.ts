@@ -1,6 +1,7 @@
-import { FrameSize } from "./Mech";
+import { FrameSize } from "./Mech.svelte";
 
-class WeaponProfile {
+export class WeaponProfile {
+    name: string;
     wepClass?: FrameSize;
     damage: Number;
     effectiveRange: Number[];
@@ -8,7 +9,8 @@ class WeaponProfile {
     traits: any[];
     materielCost: Number;
 
-    constructor (wepClass: string, damage:Number, effectiveRange:Number[], weight: Number, traits: any[], materielCost: Number){
+    constructor (name: string, wepClass: string, damage:Number, effectiveRange:Number[], weight: Number, traits: any[], materielCost: Number){
+        this.name = name;
         switch (wepClass){
             case "Light": { this.wepClass = FrameSize.Light; break; }
             case "Medium": { this.wepClass = FrameSize.Medium; break; }

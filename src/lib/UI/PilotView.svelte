@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Pilot} from "$lib/Data/Pilot";
+    import {Pilot} from "$lib/Data/Pilot.svelte";
 	import type { Arcology } from "$lib/Data/Arcology";
 	import BoxTracker from "./Components/boxTracker.svelte";
     export let pilot:Pilot;
@@ -34,7 +34,7 @@
     </div>
     <div class="form-cell col-span-6">
         <div>Injuries: 
-            <BoxTracker totalPips={3} bind:filledPips={pilot.injuryPips} boxName="injuryPips" />
+            <BoxTracker totalPips={3} bind:value={pilot.injuryPips} boxName="injuryPips" />
         </div>
         {#each pilot.injuries as injury}
             <div><p>{injury.name}</p><p>{injury.description}</p></div>
@@ -43,7 +43,7 @@
     <div class="form-cell col-span-6">
         <div>Advances: 
             
-            <BoxTracker totalPips={3} bind:filledPips={pilot.advancePips} boxName="advancePips" />
+            <BoxTracker totalPips={3} bind:value={pilot.advancePips} boxName="advancePips" />
         </div>
         {#each pilot.advances as advance}
             <div><p>{advance.name}</p><p>{advance.description}</p></div>

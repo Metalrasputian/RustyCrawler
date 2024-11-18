@@ -1,15 +1,15 @@
 export class Mech {
-    name: string;
-    frameSize: FrameSize;
-    hardPoints: HardPoint[];
-    propulsion: PropulsionType;
+    name: string = $state("");
+    frameSize: FrameSize = $state(FrameSize.Light);
+    hardPoints: HardPoint[] = $state([]);
+    propulsion: PropulsionType = $state(PropulsionType.Bipedal);
     technicalLoadouts: TechnicalLoadout[];
-    sensorBasePips: number;
-    bodyBasePips: number;
-    propulsionBasePips: number;
+    sensorBasePips: number = $state(0);
+    bodyBasePips: number = $state(0);
+    propulsionBasePips: number = $state(0);
 
-    hardPointPips: {[Name:string]: number};
-    hardPointBasePips: {[Name:string]: number};
+    hardPointPips: {[Name:string]: number} = $state({});
+    hardPointBasePips: {[Name:string]: number} = $state({});
 
     static propulsionDescriptions: Map<PropulsionType, string> = new Map<PropulsionType, string>();
 
@@ -23,7 +23,7 @@ export class Mech {
     constructor(name: string = "", frameSize: FrameSize = FrameSize.Light, propulsion:PropulsionType = PropulsionType.Bipedal, technicalLoadouts: TechnicalLoadout[] = []) {
         this.name = name;
         this.frameSize = frameSize;
-        this.hardPoints = this.getHardpoints();
+        //this.hardPoints = this.getHardpoints();
         this.propulsion = propulsion;
         this.technicalLoadouts = technicalLoadouts;
         this.hardPointBasePips = {};
@@ -76,15 +76,15 @@ export class Mech {
         };
     }
 
-    getSpeed() {
+    get speed() {
         return 8 - (this.frameSize * 2);
     }
 
-    getReactor() {
+    get reactor() {
         return 2 + (this.frameSize * 2);
     }
 
-    getHardpoints():HardPoint[]{
+    get hardpoints():HardPoint[]{
         let hps:HardPoint[] = [];
 
         for (var hp in this.hardPointBasePips) {
@@ -94,23 +94,23 @@ export class Mech {
         return hps;
     }
 
-    updateHardpoints(){
-        this.hardPoints = this.getHardpoints();
-    }
+    //updateHardpoints(){
+    //    this.hardPoints = this.getHardpoints();
+    //}
 
-    getBodyPips():number{
+    get bodyPips():number{
         return this.bodyBasePips
     }
 
-    getSensorPips():number{
+    get sensorPips():number{
         return this.sensorBasePips
     }
 
-    getPropPips():number {
+    get propPips():number {
         return this.propulsionBasePips
     }
 
-    getWeightTolerance(){
+    get weightTolerance(){
         let base = 0;
 
          switch (this.frameSize) {
@@ -128,23 +128,23 @@ export class Mech {
             }
         }
 
-        if (this.propulsion = PropulsionType.Tracked) {
+        if (this.propulsion == PropulsionType.Tracked) {
             base += 5;
         }
 
         return base;
     }
 
-    getPropDesc():any {
+    get propDesc():any {
         return Mech.propulsionDescriptions.get(this.propulsion);
     }
 
-    getWeight():number {
+    get weight():number {
         return 0
     }
 
-    getMatCost(){
-        
+    get matCost(){
+        return 0
     }
 }
 

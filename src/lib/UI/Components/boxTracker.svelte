@@ -1,27 +1,25 @@
 <script lang="ts">
-    export let totalPips: number;
-    export let filledPips: number;
-    export let boxName: string;
+    let {totalPips, value = $bindable(), boxName} = $props();
 
     function addPip(){
-        if (filledPips < totalPips){            
-            filledPips = filledPips + 1;
+        if (value < totalPips){            
+            value = value + 1;
         }
     }
 
     function subPip(){
-        if (filledPips > 0){            
-            filledPips = filledPips - 1;
+        if (value > 0){            
+            value = value - 1;
         }
     }
 </script>
 
 <div class="">
-    <button class="btn btn-sm variant-filled-surface "  on:click={subPip}>-</button>
+    <button class="btn btn-sm variant-filled-surface "  onclick={subPip}>-</button>
     <span>
         {#each {length: totalPips} as _, pip}
-            <input type="checkbox" name="{boxName}" value={pip} checked={pip < filledPips} />
+            <input type="checkbox" name="{boxName}" value={pip} checked={pip < value} />
         {/each}
     </span>
-    <button class="btn btn-sm variant-filled-primary" on:click={addPip}>+</button>
+    <button class="btn btn-sm variant-filled-primary" onclick={addPip}>+</button>
 </div>

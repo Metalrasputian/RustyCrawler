@@ -1,4 +1,4 @@
-import { PilotRank } from "$lib/Data/Pilot";
+import { PilotRank } from "$lib/Data/Pilot.svelte";
 
 export class Arcology {
     name: string;

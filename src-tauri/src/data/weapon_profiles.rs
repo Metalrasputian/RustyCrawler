@@ -1,0 +1,70 @@
+pub fn get_weapon_profiles() -> String {
+    String::from(r#"[
+        {
+            "Name": "Anti-Tank Missile",
+            "BonusDice": {
+                "Light": 1,
+                "Medium": 1,
+                "Heavy": 1
+            },
+            "Damage": {
+                "Light": 3,
+                "Medium": 3,
+                "Heavy": 3
+            },
+            "EffectiveRange": {
+                "Light": [12,36],
+                "Medium": [12,36],
+                "Heavy": [12,36]
+            },
+            "Weight": {
+                "Light": 5,
+                "Medium": 10,
+                "Heavy": 15
+            },
+            "Traits": {
+                "Light" : [{"Name": "Limited", "Value": 1}, {"Name": "Secondary System"}],
+                "Medium": [{"Name": "Limited", "Value": 2}, {"Name": "Secondary System"}],
+                "Heavy": [{"Name": "Limited", "Value":3}, {"Name": "Secondary System"}]
+            },
+            "Materiel": {
+                "Light": 10,
+                "Medium": 20,
+                "Heavy": 30
+            }    
+        },
+        {
+            "Name": "Autocannon",
+            "BonusDice": {
+                "Light": 3,
+                "Medium": 3,
+                "Heavy": 3
+            },
+            "Damage": {
+                "Light": 0.5,
+                "Medium": 1,
+                "Heavy": 1.5
+            },
+            "EffectiveRange": {
+                "Light": [0,18],
+                "Medium": [0,18],
+                "Heavy": [0,18]
+            },
+            "Weight": {
+                "Light": 5,
+                "Medium": 6,
+                "Heavy": 7
+            },
+            "Traits": {
+                "Light" : [{"Name": "Assault"}],
+                "Medium": [{"Name": "Assault"}],
+                "Heavy": [{"Name": "Assault"}]
+            },
+            "Materiel": {
+                "Light": 20,
+                "Medium": 40,
+                "Heavy": 50
+            }
+        }
+    ]"#)
+}

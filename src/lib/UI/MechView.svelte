@@ -1,8 +1,39 @@
 <script lang="ts">
-    import {FrameSize, Mech, PropulsionType} from '$lib/Data/Mech';
+    import {FrameSize, Mech, PropulsionType} from '$lib/Data/Mech.svelte';
+	import { WeaponProfile } from '$lib/Data/WepProfile';
 	import Weapon from '$lib/UI/Weapon.svelte';
+	import { onMount } from 'svelte';
 	import BoxTracker from './Components/boxTracker.svelte';
-    export let current_mech:Mech;
+    import { invoke } from '@tauri-apps/api/core';
+
+    let { current_mech = $bindable() } = $props();
+    
+    let weaponProfiles: WeaponProfile[] = $state([]);
+    let selected_weapon: WeaponProfile | undefined = $state();
+  
+    onMount(async () => {
+
+    });
+    invoke('load_wep_pro_data').then((data) => InitializeWepProfiles(data));
+
+    function InitializeWepProfiles(profileData: any){
+        let profileJSON = JSON.parse(profileData.toString());
+        for (var profile of profileJSON){
+          for (var sizeClass of ["Light", "Medium", "Heavy"]) {
+            let wep = new WeaponProfile(
+              profile.Name + " (" + sizeClass +")",
+              sizeClass,
+              profile.Damage[sizeClass],
+              profile.EffectiveRange,
+              profile.Weight[sizeClass],
+              profile.Traits[sizeClass],
+              profile.Materiel[sizeClass]
+            );
+            
+            weaponProfiles.push(wep);
+          };
+        }
+    }
 </script>
 
 <div class="grid grid-cols-5">
@@ -16,28 +47,28 @@
     <div class="form-cell-header">Hardpoints</div>
     <div class="form-cell-header">Weight Tolerance</div>
     <div class="form-cell">{current_mech.propulsion}</div>
-    <div class="form-cell">{current_mech.getSpeed()}</div>
-    <div class="form-cell">{current_mech.getReactor()}</div>
+    <div class="form-cell">{current_mech.speed}</div>
+    <div class="form-cell">{current_mech.reactor}</div>
     <div class="form-cell">HPs</div>
-    <div class="form-cell">{current_mech.getWeightTolerance()}</div>
+    <div class="form-cell">{current_mech.weightTolerance}</div>
     <div class="form-cell-header">(1) Sensors</div>
     <div class="form-cell-header">(2) Hardpoint</div>
     <div class="form-cell-header">(3-5) Body</div>
     <div class="form-cell-header">(6) Propulsion</div>
     <div class="form-cell-header">Total Weight</div>
-    <div class="form-cell"><BoxTracker boxName="SensorPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Sensors"]}></BoxTracker></div>
+    <div class="form-cell"><BoxTracker boxName="SensorPips" totalPips={current_mech.sensorPips} bind:value={current_mech.hardPointPips["Sensors"]}></BoxTracker></div>
     <div class="form-cell">
 
         {#each Object.entries(current_mech.hardPointBasePips) as [hpName, hpValue]}
             <p>{hpName}</p>
-            <BoxTracker boxName={hpName} totalPips={hpValue} bind:filledPips={current_mech.hardPointPips[hpName]}></BoxTracker>
+            <BoxTracker boxName={hpName} totalPips={hpValue} bind:value={current_mech.hardPointPips[hpName]}></BoxTracker>
         {/each}
         
 
     </div>
-    <div class="form-cell"><BoxTracker boxName="BodyPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Body"]}></BoxTracker></div>
-    <div class="form-cell"><BoxTracker boxName="PropulsionPips" totalPips={current_mech.getSensorPips()} bind:filledPips={current_mech.hardPointPips["Propulsion"]}></BoxTracker></div>
-    <div class="form-cell"><p>{current_mech.getWeight()}</p></div>
+    <div class="form-cell"><BoxTracker boxName="BodyPips" totalPips={current_mech.sensorPips} bind:value={current_mech.hardPointPips["Body"]}></BoxTracker></div>
+    <div class="form-cell"><BoxTracker boxName="PropulsionPips" totalPips={current_mech.propPips} bind:value={current_mech.hardPointPips["Propulsion"]}></BoxTracker></div>
+    <div class="form-cell"><p>{current_mech.weight}</p></div>
 
     {#each Object.entries(current_mech.hardPointBasePips) as [hpName, hpValue]}
         <Weapon slotName={hpName + " Loadout"} weapon=0 />
@@ -59,5 +90,12 @@
         {:else}
             None.
         {/if}
+    </div>
+    <div class="form-cell">
+        <select  bind:value={selected_weapon} name="weapons" id="weapons">
+            {#each weaponProfiles as wep}
+                <option value={wep} >{wep.name}</option>
+            {/each}
+        </select>
     </div>
 </div>

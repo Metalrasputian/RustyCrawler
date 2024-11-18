@@ -2,18 +2,20 @@
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 	  import MechList from '$lib/UI/MechList.svelte';
     import PilotList from '$lib/UI/PilotList.svelte';
-    import { Pilot, PilotRank } from '$lib/Data/Pilot';
-    import {FrameSize, Mech} from '$lib/Data/Mech';
+    import { Pilot, PilotRank } from '$lib/Data/Pilot.svelte';
+    import {FrameSize, Mech} from '$lib/Data/Mech.svelte';
+    import {WeaponProfile} from '$lib/Data/WepProfile';
     import Sortie from '$lib/UI/Sortie.svelte';
 	  import { arcologies } from '$lib/Data/Arcology';
     import { LightSwitch } from '@skeletonlabs/skeleton';
-    let crawlerTab = 0;
-    let current_arcology_index = 0;
-    let pilots: Pilot[] = [new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")];
-    let mechs : Mech[]= [new Mech("Bangers"), new Mech("Mash", FrameSize.Medium), new Mech("Beefsteak", FrameSize.Heavy)];
-
     import { invoke } from '@tauri-apps/api/core';
-    const invoke = window.__TAURI__.core.invoke;
+    import Weapon from '$lib/UI/Weapon.svelte';
+
+    let crawlerTab: Number = $state(0);
+    let current_arcology_index = $state(0);
+    let pilots: Pilot[] = $state([new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")]);
+    let mechs : Mech[]= $state([new Mech("Bangers"), new Mech("Mash", FrameSize.Medium), new Mech("Beefsteak", FrameSize.Heavy)]);
+    
 </script>
   
 <div class="container mx-auto p-8 space-y-8">
@@ -29,15 +31,15 @@
   </div>
 
   <TabGroup>
-    <Tab bind:group={crawlerTab} name="MechBay" value=0>Mech Bay</Tab>
-    <Tab bind:group={crawlerTab} name="Barracks" value=1>Barracks</Tab>
-    <Tab bind:group={crawlerTab} name="LaunchBay" value=2>Launch Bay</Tab>
+    <Tab bind:group={crawlerTab} name="MechBay" value={0}>Mech Bay</Tab>
+    <Tab bind:group={crawlerTab} name="Barracks" value={1}>Barracks</Tab>
+    <Tab bind:group={crawlerTab} name="LaunchBay" value={2}>Launch Bay</Tab>
     
       
     <svelte:fragment slot="panel">
-      {#if crawlerTab == 0}
-        <MechList bind:mechs={mechs}/>
-      {:else if crawlerTab == 1}
+      {#if crawlerTab === 0}
+        <MechList bind:mechs={mechs} />
+      {:else if crawlerTab === 1}
         <PilotList bind:pilots={pilots} current_arcology={arcologies[current_arcology_index]}/>
       {:else }
         <Sortie />
