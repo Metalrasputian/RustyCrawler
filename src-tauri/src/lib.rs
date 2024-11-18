@@ -1,5 +1,6 @@
-#[path = "data/weapon_profiles.rs"] mod weapon_profiles;
-#[path = "data/arcologies.rs"] mod arcologies;
+static WEAPON_DATA: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/data/Weapons.json"));
+static ARCOLOGY_DATA: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/data/Weapons.json"));
+
 
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -12,10 +13,10 @@ pub fn run() {
 
 #[tauri::command]
 fn load_wep_pro_data() -> String {
-  weapon_profiles::get_weapon_profiles()
+  WEAPON_DATA.to_string()
 }
 
 #[tauri::command]
 fn load_archologies() -> String {
-  arcologies::get_arcologies()
+  ARCOLOGY_DATA.to_string()
 }
