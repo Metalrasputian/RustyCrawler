@@ -1,5 +1,5 @@
 static WEAPON_DATA: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/data/Weapons.json"));
-static ARCOLOGY_DATA: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/data/Weapons.json"));
+static ARCOLOGY_DATA: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/data/Arcologies.json"));
 
 
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!

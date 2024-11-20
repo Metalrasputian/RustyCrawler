@@ -6,7 +6,7 @@
     import {FrameSize, Mech} from '$lib/Data/Mech.svelte';
     import {WeaponProfile} from '$lib/Data/WepProfile';
     import Sortie from '$lib/UI/Sortie.svelte';
-	  import { arcologies } from '$lib/Data/Arcology';
+	  import { Arcology } from '$lib/Data/Arcology';
     import { LightSwitch } from '@skeletonlabs/skeleton';
     import { invoke } from '@tauri-apps/api/core';
     import Weapon from '$lib/UI/Weapon.svelte';
@@ -14,8 +14,54 @@
     let crawlerTab: Number = $state(0);
     let current_arcology_index = $state(0);
     let pilots: Pilot[] = $state([new Pilot(PilotRank.Rookie, "Joe"), new Pilot(PilotRank.Veteran, "Bob")]);
-    let mechs : Mech[]= $state([new Mech("Bangers"), new Mech("Mash", FrameSize.Medium), new Mech("Beefsteak", FrameSize.Heavy)]);
+    let mechs : Mech[] = $state([new Mech("Bangers"), new Mech("Mash", FrameSize.Medium), new Mech("Beefsteak", FrameSize.Heavy)]);
     
+    let arcologies: Arcology[] = $state([]);
+
+    invoke('load_archologies').then((data) => InitializeArcologies(data));
+
+    function InitializeArcologies(arcologyData: any){
+      let arcologyParse = JSON.parse(arcologyData.toString());
+
+      for (var arcData of arcologyParse) {
+
+        let initPilots = [];
+
+        console.log(arcData.initialPilots);
+
+        for (var initPilot of arcData.initialPilots) {
+          let pilotRank;
+
+          switch (initPilot) {
+            case "Veteran": {
+              pilotRank = PilotRank.Veteran;
+            }
+
+            case "Trained": {
+              pilotRank = PilotRank.Trained;
+            }
+
+             default: {
+              pilotRank = PilotRank.Rookie;
+            }
+          }
+
+          initPilots.push(
+            {"rank": pilotRank, "min": initPilot.min, "max": initPilot.max});
+        }
+
+        let arc = new Arcology(
+            arcData.name,
+            arcData.quirkTitle,
+            arcData.quirkDescription,
+            initPilots,
+            arcData.framePreference,
+            arcData.propulsionTypes
+          );
+
+        arcologies.push(arc);
+      }
+    }
 </script>
   
 <div class="container mx-auto p-8 space-y-8">

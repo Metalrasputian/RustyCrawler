@@ -34,5 +34,67 @@
             { "min": 0, "max": 2}
         ],
         "propulsionTypes": ["Any"]
+    },
+    {
+        "name": "Ghosts of Tiamat", 
+        "quirkTitle": "Deus Ex Machina",
+        "quirkDescription": "Pilots in a Ghosts of Tiamat Crew may not be Aces. They always deploy Trained Pilots. They do not take Damage during the Cool-Down Phase when their Frame is Critically Damaged in the body location, but they do suffer Injuries from additional Damage to their Frame.\n\nWhen Injured, their Pilots do not suffer any penalties to Tests. They recover Injuries as usual between Missions. During the Cool-Down Phase, they receive +1 die roll modifier to all Technical Tests.\n\nDuring a Campaign, their Pilots may never earn Experience or change Experience Level. They do not roll for Injuries when their Frame is disabled. The Crew may not visit Free Stations. They automatically identify and repair Old-Tech, which is immediately available for the next Mission without any additional Cost. Parts must be used to repair Frames as usual.",
+        "initialPilots": [
+            {"rank": "Veteran", "min": 0, "max": 0}, 
+            {"rank": "Trained", "min": 4, "max": -1}, 
+            { "rank": "Rookie", "min": 0, "max": 0}
+        ],
+        "framePreference": [
+            { "min": 0, "max": 2}, 
+            { "min":0, "max": 4}, 
+            { "min": 0, "max": 2}
+        ],
+        "propulsionTypes": ["Any"]
+    },
+    {
+        "name": "Hinode", 
+        "quirkTitle": "Masters and Apprentices",
+        "quirkDescription": "A Hinode Crew must include one Rookie Pilot for each Veteran and Trained Pilot in the Crew when it is created. Further, each Rookie Pilot must be associated with a Veteran or Trained Pilot – their Master. Both must pilot the same size Frame, though they need not have the same Loadouts. Whenever the Rookie Pilot performs a Gunnery, Evasion, or Manoeuvre Test while their Master has Lock to them, they receive +1 to the results of their Test roll. This bonus is lost during a Campaign if the Rookie Pilot achieves the same Training Level as their Master, at which time the relationship ends.",
+        "initialPilots": [
+            { "rank": "Veteran", "min": 0, "max": 0}, 
+            { "rank": "Trained", "min": 4, "max": -1}, 
+            { "rank": "Rookie", "min": 0, "max": 0}
+        ],
+        "framePreference": [
+            { "min": 0, "max": 2}, 
+            { "min":0, "max": 4}, 
+            { "min": 0, "max": 2}
+        ],
+        "propulsionTypes": ["Multi-Limbed", "Bipedal", "Jet"]
+    },
+    {
+        "name": "North-Star", 
+        "quirkTitle": "Meat for the Grinder",
+        "quirkDescription": "A North-Star Crew may never contain more Veteran or Trained Pilots than Rookie Pilots when it is first created. Whenever a Veteran or Trained Pilot in a North- Star Crew performs an Evasion Test and a Rookie Pilot from the same Crew also has Lock with the active Frame, they receive +1 to the Evasion Roll. The Rookie Pilot’s Frame automatically takes a single point of Damage to a random Location, as they are used as a distraction.",
+        "initialPilots": [
+            { "rank": "Veteran", "min": 0, "max": 1}, 
+            { "rank": "Trained", "min": 0, "max": 2}, 
+            { "rank": "Rookie", "min": 1, "max": -1}
+        ],
+        "framePreference": [
+            { "min": 0, "max": 1}, 
+            { "min":0, "max": 6}, 
+            { "min": 0, "max": 2}],
+        "propulsionTypes": ["Any"]
+    },
+    {
+        "name": "Ronin", 
+        "quirkTitle": "Smokin’ Aces",
+        "quirkDescription": "Due to their Experience Level and previous time spent with other Crews, any number of Pilots in a Ronin Crew may be Aces, instead of the usual limit of one.\n\nDuring Campaigns, they may recruit Aces of any Level when they return to their Home Free Station, either by choice or necessity.",
+        "initialPilots": [
+            { "rank": "Veteran", "min": 0, "max": 1}, 
+            { "rank": "Trained", "min": 0, "max": 2}, 
+            { "rank": "Rookie", "min": 1, "max": -1}
+        ],
+        "framePreference": [
+            { "min": 0, "max": 1}, 
+            { "min":0, "max": 6}, 
+            { "min": 0, "max": 2}],
+        "propulsionTypes": ["Any"]
     }
 ]

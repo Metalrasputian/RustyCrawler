@@ -15,6 +15,7 @@
 
     });
     invoke('load_wep_pro_data').then((data) => InitializeWepProfiles(data));
+    
 
     function InitializeWepProfiles(profileData: any){
         let profileJSON = JSON.parse(profileData.toString());
