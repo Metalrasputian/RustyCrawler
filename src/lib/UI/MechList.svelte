@@ -1,9 +1,6 @@
 <script lang="ts">
-    //import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
     import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
     import MechView from '$lib/UI/MechView.svelte';
-    //import {Mech} from '$lib/Data/Mech.svelte.ts';
-	//import type { WeaponProfile } from '$lib/Data/WepProfile';
 
     let currentMechIndex: number = $state(0);
     let { mechs = $bindable() } = $props();

@@ -4,12 +4,10 @@
     import PilotList from '$lib/UI/PilotList.svelte';
     import { Pilot, PilotRank } from '$lib/Data/Pilot.svelte';
     import {FrameSize, Mech} from '$lib/Data/Mech.svelte';
-    import {WeaponProfile} from '$lib/Data/WepProfile';
     import Sortie from '$lib/UI/Sortie.svelte';
 	  import { Arcology } from '$lib/Data/Arcology';
     import { LightSwitch } from '@skeletonlabs/skeleton';
     import { invoke } from '@tauri-apps/api/core';
-    import Weapon from '$lib/UI/Weapon.svelte';
 
     let crawlerTab: Number = $state(0);
     let current_arcology_index = $state(0);
